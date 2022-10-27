@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.bienvenida{
+  text-align: center;
+  margin-top: 10%;
+  color:#069c01
+}
+
+.intro{
+  text-align: center;
+  margin-top: 3%;
+  
+  height: 35vh;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
+  background-color: rgb(1, 145, 1);
+  
+}
