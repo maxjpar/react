@@ -1,0 +1,45 @@
+case 2: /* Finalizar Turno */
+                    echo "holaaa";
+                    if (isset($_POST['areas_sectores_turnos__id'])) {
+
+                        $areas_sectores_turnos__id = $_POST['areas_sectores_turnos__id']; /* id del turno actual */
+                      
+                        //R_25028 SE AGREGA VALIDACION PARA QUE AL MOMENTO DE CERRAR EL TURNO VERIFIQUE QUE TODAS LAS TERMINADORAS HAYAN RENDIDO AL MENOS UNA VEZ
+                       $terminadora_sin_rendir = false;
+                       $rs_puestos_con_asignacion = obtener_puestos_con_asignacion_insumos($areas_sectores_turnos__id, 131);
+                       var_dump($rs_puestos_con_asignacion);
+
+                        if(mysql_num_rows($rs_puestos_con_asignacion) > 0){
+
+                            while($row_asignacion = mysql_fetch_object($rs_puestos_con_asignacion)){
+                                $rs_rendicion = obtener_ultima_rendicion_insumos($areas_sectores_turnos__id, $areas_sectores_puestos_destinos__id, 131);
+                                var_dump($rs_rendicion);              
+                                if (mysql_num_rows($rs_rendicion) > 0){
+                                    $rs_asignacion = obtener_ultima_asignacion_insumos($areas_sectores_turnos__id, $areas_sectores_puestos_destinos__id, 131);
+                                    $row_asignacion = mysql_fetch_object($rs_asignacion); 
+                                    $row_rendicion = mysql_fetch_object($rs_rendicion);
+
+                                    if($row_asignacion->fecha > $row_rendicion->fecha) {
+                                        $terminadora_sin_rendir = true;
+                                        break;
+                                    } //if       
+                                }//if
+                            }//while
+                        }//if
+
+                       if ($terminadora_sin_rendir){
+                           $mensaje = "Se ha detectado al menos una terminadora con insumos asignados sin ninguna rendicion. Verifique porfavor";
+                           echo "<input type='hidden' id='hdn_puesto_asignado_sin_rendicion' value= '$mensaje'>";
+                           break;
+                       }
+                       
+                       //var_dump($terminadora_sin_rendir);
+                        $areas_sectores_turnos__FinalizarTurno = areas_sectores_turnos__FinalizarTurno($areas_sectores_turnos__id, $idusuario);
+                        if ($areas_sectores_turnos__FinalizarTurno == true) {
+                            echo '<input type="hidden" id="registrar_accion">';
+                        }
+                        break;
+                    } // if
+            } // switch
+        }
+        break;

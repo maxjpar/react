@@ -46,7 +46,6 @@
 .intro{
   text-align: center;
   margin-top: 3%;
-  
   height: 35vh;
 }
 
@@ -54,5 +53,69 @@
   display: flex;
   justify-content: end;
   background-color: rgb(1, 145, 1);
-  
+}
+
+.counter{
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 15%;
+  border: 1px black solid;
+  width: 100px;
+  align-items: center;
+}
+
+.containerCounter{
+  display: flex;
+  justify-content: center;
+}
+
+.textNavbar{
+  text-decoration: none;
+  padding: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  color: #069c01;
+}
+
+.textNavbar:hover{
+  color: black;
+}
+
+.active{
+  font-weight: bold;
+}
+
+.container {
+  display:  grid;
+  grid-template-columns: 33% 33% 33%;
+  text-align: center;
+}
+
+.containerProductos{
+  border: solid rgb(135, 219, 153);
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.itemDetail{
+  display: grid;
+ justify-content: center;
+ text-align: center;
+ border:  #069c01 1px solid;
+
+ 
+}
+
+.buttonSumaResta{
+margin: 10px;
+}
+
+.linkOpenProduct{
+text-decoration: none;
+color: #069c01;
+}
+
+.linkOpenProduct:hover{
+color: black;
+transform: scale(1.5);
 }

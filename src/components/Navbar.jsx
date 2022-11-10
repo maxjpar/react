@@ -1,11 +1,10 @@
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import logo from '../multimedia/ICONOOO.ico';
 import CardWidget from './CardWidget';
-import logo from '../multimedia/ICONOOO.ico'
+import {NavLink} from 'react-router-dom';
 
 function NavScrollExample() {
   return (
@@ -20,9 +19,10 @@ function NavScrollExample() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Inicio</Nav.Link>
-            <Nav.Link href="#action2">Nosotros</Nav.Link>
-            <Nav.Link href="#action3" >Informacion Nutricional</Nav.Link>
+            <NavLink className="textNavbar"  to="/">Inicio</NavLink>
+            <NavLink className="textNavbar"  to="/category/saludable" >Saludables</NavLink>
+            <NavLink className="textNavbar"  to="/category/calorico" >Caloricos</NavLink>
+            <NavLink className="textNavbar"  to="/nosotros">Nosotros</NavLink>
           </Nav>
           <Form className="d-flex">
            
